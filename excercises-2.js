@@ -2,16 +2,27 @@
 // Define a function max() that takes two numbers as arguments and returns the largest of them. Use the if-then-else construct available in JavaScript.
 // ---------------------
 
-function max(){
-    //...
+
+function max(x,y){
+	if (x>y){
+		return x;
+	} else {
+		return y;
+	}
 }
 
 // ---------------------
 // Define a function maxOfThree() that takes three numbers as arguments and returns the largest of them.
 // ---------------------
 
-function maxOfThree(){
-    //...
+function maxOfThree(x, y, z){
+    if (z > max(x,y)){
+    	return z;
+    } else if (y > max(x,z)){
+    	return y;
+    } else {
+    	return x;
+    }
 }
 
 // ---------------------
@@ -19,7 +30,19 @@ function maxOfThree(){
 // ---------------------
 
 function isVowel(char){
-    //...
+	if (strComp(char, 'a') || strComp(char, 'A') || strComp(char, 'e') || strComp(char, 'E') || strComp(char, 'i') || strComp(char, 'I') || strComp(char, 'o') || strComp(char, 'O') || strComp(char, 'u') || strComp(char, 'U')){
+		return true;
+	} else {
+		return false;
+}
+}
+
+function strComp(charA, charB){
+	if (charA===charB){
+		return true;
+	} else {
+		return false;
+	}
 }
 
 // ---------------------
@@ -27,7 +50,14 @@ function isVowel(char){
 // ---------------------
 
 function rovarspraket(phrase){
-    //...
+	var newPhrase = "";
+	for (count=0; count<phrase.length; count++){
+		newPhrase = newPhrase + phrase[count];
+		if (!isVowel(phrase[count])){
+			newPhrase = newPhrase + "o" + phrase[count];
+		}
+	}
+	return newPhrase;
 }
 
 
@@ -35,6 +65,32 @@ function rovarspraket(phrase){
 // Define a function reverse() that computes the reversal of a string. For example, reverse("jag testar") should return the string "ratset gaj".
 // ---------------------
 
-function reverse(){
-    //...
+function reverse(phrase){
+    var newPhrase = "";
+	for (count=(phrase.length-1); count>=0; count--){
+		newPhrase = newPhrase + phrase[count];
+	}
+	return newPhrase;
 }
+
+
+
+//////////    TEST      //////////////
+
+var x=3;
+var y=5;
+var z=10;
+
+var max2 = max(x,y);
+var max3 = maxOfThree(x, y, z);
+
+console.log(max2 + " is the max of " + x + " and " + y);
+console.log(max3 + " is the max of " + x + ", " + y + " and " + z);
+
+var phrase = "goatman";
+
+var Rovar = rovarspraket(phrase);
+console.log("New phrase is " + Rovar);
+
+var reversePhrase = reverse(phrase);
+console.log("New phrase is " + reversePhrase);
