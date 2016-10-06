@@ -16,9 +16,9 @@ function max(x,y){
 // ---------------------
 
 function maxOfThree(x, y, z){
-    if (z > max(x,y)){
+    if (z >= max(x,y)){
     	return z;
-    } else if (y > max(x,z)){
+    } else if (y >= max(x,z)){
     	return y;
     } else {
     	return x;
