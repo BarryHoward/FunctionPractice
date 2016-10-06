@@ -18,7 +18,8 @@ function max(x,y){
 function maxOfThree(x, y, z){
     if (z >= max(x,y)){
     	return z;
-    } else if (y >= max(x,z)){
+    } else if (y >=
+     max(x,z)){
     	return y;
     } else {
     	return x;
@@ -30,11 +31,9 @@ function maxOfThree(x, y, z){
 // ---------------------
 
 function isVowel(char){
-	if (strComp(char, 'a') || strComp(char, 'A') || strComp(char, 'e') || strComp(char, 'E') || strComp(char, 'i') || strComp(char, 'I') || strComp(char, 'o') || strComp(char, 'O') || strComp(char, 'u') || strComp(char, 'U')){
-		return true;
-	} else {
-		return false;
-}
+
+	var vowels = ["a", "e", "i", "o", "u"];
+	return vowels.includes(char.toLowerCase());
 }
 
 function strComp(charA, charB){
@@ -49,11 +48,11 @@ function strComp(charA, charB){
 // Write a function translate() that will translate a text into "Rovarspraket". That is, double every consonant and place an occurrence of "o" in between. For example, translate("this is fun") should return the string "tothohisos isos fofunon".
 // ---------------------
 
-function rovarspraket(phrase){
+function translate(phrase){
 	var newPhrase = "";
 	for (count=0; count<phrase.length; count++){
 		newPhrase = newPhrase + phrase[count];
-		if (!isVowel(phrase[count])){
+		if (!isVowel(phrase[count]) && phrase[count] !== " "){
 			newPhrase = newPhrase + "o" + phrase[count];
 		}
 	}
@@ -87,9 +86,9 @@ var max3 = maxOfThree(x, y, z);
 console.log(max2 + " is the max of " + x + " and " + y);
 console.log(max3 + " is the max of " + x + ", " + y + " and " + z);
 
-var phrase = "goatman";
+var phrase = "goat man";
 
-var Rovar = rovarspraket(phrase);
+var Rovar = translate(phrase);
 console.log("New phrase is " + Rovar);
 
 var reversePhrase = reverse(phrase);
