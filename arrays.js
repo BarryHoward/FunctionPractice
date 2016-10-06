@@ -20,17 +20,18 @@ var instructors = [
 // 1. Find largest number
 // ---------------------------
 
-var max;
-for (count=0; count<numbers.length; count++){
-	if (count===0){
-		max=numbers[count];
-	} else if (numbers[count]>max){
-		max = numbers[count];
+function findLargest(numArray){
+
+var max = numArray[0];
+	for (count=1; count<numArray.length; count++){
+		if (numArray[count]>max){
+			max = numArray[count];
+		}
+
 	}
-
+	return max;
 }
-
-console.log(max);
+console.log(findLargest(numbers));
 
 
 
@@ -38,70 +39,75 @@ console.log(max);
 // 2. Find longest string
 // ---------------------------
 
-var strMax;
-var strLength;
-for (count=0; count<strings.length; count++){
-	if (count===0){
-		strMax=strings[count];
-		strLength=strings[count].length;
-	} else if (strings[count].length>strLength){
-		strMax= strings[count];
-		strLength=strings[count].length;
+function findLongest(strArray){
+	var strMax = strArray[0];
+	var strLength = strArray[0].length;
+	for (count=1; count<strArray.length; count++){
+		if (strArray[count].length>strLength){
+			strMax= strings[count];
+			strLength=strings[count].length;
+		}
+
 	}
-
+	return strMax;
 }
-
-console.log(strMax);
+console.log(findLongest(strings));
 
 // ---------------------------
 // 3. Find even numbers
 // ---------------------------
 
-var newArrayEven=[];
 
-for (count=0; count<numbers.length; count++){
-	if (numbers[count]%2===0){
-		newArrayEven.push(numbers[count]);
+function findEven(numArray){
+	var newArrayEven=[];
+	for (count=0; count<numArray.length; count++){
+		if (numArray[count]%2===0){
+			newArrayEven.push(numArray[count]);
+		}
 	}
+	return newArrayEven;
 }
-
-console.log(newArrayEven);
+console.log(findEven(numbers));
 
 // ---------------------------
 // 4. Find odd numbers
 // ---------------------------
 
-var newArrayOdd=[];
-
-for (count=0; count<numbers.length; count++){
-	if (numbers[count]%2===1){
-		newArrayOdd.push(numbers[count]);
+function findOdd(numArray){
+	var newArrayOdd=[];
+	for (count=0; count<numArray.length; count++){
+		if (numArray[count]%2===1){
+			newArrayOdd.push(numArray[count]);
+		}
 	}
+	return newArrayOdd;
 }
-
-console.log(newArrayOdd);
+console.log(findOdd(numbers));
 
 // ---------------------------
 // 5. Find words that contain `is`
 // ---------------------------
 
-var newArrayIs=[];
-
-for (count=0; count<strings.length; count++){
-	if (strings[count].includes("is")){
-		newArrayIs.push(strings[count]);
+function findIs(strArray){
+	var newArrayIs=[];
+	for (count=0; count<strArray.length; count++){
+		if (strArray[count].includes("is")){
+			newArrayIs.push(strArray[count]);
+		}
 	}
+	return newArrayIs;
 }
-
-console.log(newArrayIs);
+console.log(findIs(strings));
 
 
 // ---------------------------
 // 5. Join Both Arrays Together
 // ---------------------------
 
-var totalArray = numbers.concat(strings);
-console.log(totalArray);
+function joinArrays(array1, array2){
+	return array1.concat(array2);
+}
+console.log(joinArrays(numbers, strings));
 
 
 // ---------------------------
@@ -109,41 +115,44 @@ console.log(totalArray);
 //    then sort them alphabetically
 // ---------------------------
 
-var ArrayInstruct=[];
 
-for (count=0; count<instructors.length; count++){
-	if (instructors[count].teaches==="JavaScript"){
-		ArrayInstruct.push(instructors[count].firstname);
+
+function sortInstructors(instructorsInit){
+
+	var arrayInstruct=[];
+	for (count=0; count<instructorsInit.length; count++){
+		if (instructorsInit[count].teaches==="JavaScript"){
+			arrayInstruct.push(instructorsInit[count].firstname);
+		}
 	}
+
+	var lcArrayInstruct = arrayInstruct.slice();
+	for (var count=0; count<lcArrayInstruct.length; count++){
+		lcArrayInstruct[count]=lcArrayInstruct[count].toLowerCase();
+	}
+
+	var lcSortArray = lcArrayInstruct.slice();
+	lcSortArray.sort();
+	var indexes = [];
+	var sortedArray=[];
+
+	var indexFinder = function(element, index, array){
+		indexes[index] = array.indexOf(lcSortArray[index]);
+	}
+
+	var arrayShuffle = function(element, index, array){
+		sortedArray[index]=arrayInstruct[indexes[index]];
+	}
+
+	lcArrayInstruct.forEach(indexFinder);
+	arrayInstruct.forEach(arrayShuffle);
+
+
+	console.log(sortedArray);
+	return sortedArray;
+
 }
 
-//  Begin sorting //
+console.log(sortInstructors(instructors));
 
-var indexFinder = function(element, index, array){
-	indexes[index] = array.indexOf(lcSortArray[index]);
-}
-
-var arrayShuffle = function(element, index, array){
-	SortedArray[index]=ArrayInstruct[indexes[index]];
-}
-
-var lcArrayInstruct = [];
-for (var count=0; count<ArrayInstruct.length; count++){
-	lcArrayInstruct[count]=ArrayInstruct[count].toLowerCase();
-}
-
-var lcSortArray = [];
-for (count=0; count<lcArrayInstruct.length; count++){
-	lcSortArray[count]=lcArrayInstruct[count];
-}
-
-lcSortArray.sort();
-
-var indexes = [];
-var SortedArray=[];
-
-lcArrayInstruct.forEach(indexFinder);
-ArrayInstruct.forEach(arrayShuffle);
-
-console.log(SortedArray);
 
