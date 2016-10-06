@@ -109,16 +109,41 @@ console.log(totalArray);
 //    then sort them alphabetically
 // ---------------------------
 
-var newArrayInstruct=[];
+var ArrayInstruct=[];
 
 for (count=0; count<instructors.length; count++){
 	if (instructors[count].teaches==="JavaScript"){
-		newArrayInstruct.push(instructors[count].firstname);
+		ArrayInstruct.push(instructors[count].firstname);
 	}
 }
 
-console.log(newArrayInstruct);
+//  Begin sorting //
 
-newArrayInstruct.sort();
+var indexFinder = function(element, index, array){
+	indexes[index] = array.indexOf(lcSortArray[index]);
+}
 
-console.log(newArrayInstruct);
+var arrayShuffle = function(element, index, array){
+	SortedArray[index]=ArrayInstruct[indexes[index]];
+}
+
+var lcArrayInstruct = [];
+for (var count=0; count<ArrayInstruct.length; count++){
+	lcArrayInstruct[count]=ArrayInstruct[count].toLowerCase();
+}
+
+var lcSortArray = [];
+for (count=0; count<lcArrayInstruct.length; count++){
+	lcSortArray[count]=lcArrayInstruct[count];
+}
+
+lcSortArray.sort();
+
+var indexes = [];
+var SortedArray=[];
+
+lcArrayInstruct.forEach(indexFinder);
+ArrayInstruct.forEach(arrayShuffle);
+
+console.log(SortedArray);
+
